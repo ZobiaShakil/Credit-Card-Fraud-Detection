@@ -10,7 +10,7 @@ function App() {
   // This function fetches data from our new /logs endpoint
   const fetchLogs = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:8000/logs');
+      const response = await fetch('https://fraud-api-h8ty.onrender.com/');
       const data = await response.json();
       if (Array.isArray(data)) {
         setLogs(data);
