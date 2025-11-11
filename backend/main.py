@@ -19,7 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# --- DATABASE SETUP ---
+# database setup
 DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -68,11 +68,10 @@ with open(os.path.join(BASE_DIR, "models", "feature_columns.json"), "r") as f:
 logger.info(f"Model loaded! Features: {len(feature_columns)}")
 logger.info("Preprocessor loaded!")
 
-# Extract num/cat features from preprocessor (assuming order: num first, cat second)
+# Extract num/cat features 
 num_features = preprocessor.transformers_[0][2]
 cat_features = preprocessor.transformers_[1][2]
 
-# 2. DEFINE INPUT MODEL
 class SimpleTransaction(BaseModel):
     TransactionAmt: float
     card1: Optional[float] = 0.0
@@ -93,7 +92,6 @@ class SimpleTransaction(BaseModel):
 @app.post("/predict")
 async def predict(data: SimpleTransaction, db: Session = Depends(get_db)):
     try:
-        # Create full feature vector
         full_data = data.to_full_transaction()
         df_raw = pd.DataFrame([full_data])
         
@@ -150,19 +148,15 @@ async def predict(data: SimpleTransaction, db: Session = Depends(get_db)):
             "details": error_details
         }
 
-
-# --- ADD THIS NEW ENDPOINT ---
 @app.get("/logs")
 async def get_logs(db: Session = Depends(get_db)):
     try:
-        # Query the database, get all logs, order by newest first
         logs = db.query(PredictionLog).order_by(PredictionLog.id.desc()).all()
         return logs
     except Exception as e:
         error_details = traceback.format_exc()
         logger.error(f"Error fetching logs:\n{error_details}")
         return {"error": str(e)}
-# --- END OF NEW ENDPOINT ---
 
 @app.get("/")
 async def root():
