@@ -1,0 +1,194 @@
+/* A simple reset and base font */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+}
+
+/* Main app container */
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #ffffff;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* This is the magic for our two-column layout */
+.main-content {
+  display: flex; /* Arrange children side-by-side */
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  padding: 20px;
+}
+
+/* Column 1: The Form */
+.form-container {
+  flex: 1; /* Take up 1 part of the space */
+  min-width: 300px; /* Ensure it doesn't get too small */
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+/* Column 2: The Dashboard */
+.dashboard-container {
+  flex: 2; /* Take up 2 parts of the space (twice as wide) */
+  min-width: 400px;
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+h1, h2 {
+  color: #1a1a1a;
+}
+
+
+/* --- Form Styling --- */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* --- Result Box Styling --- */
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.result-box.not-fraud {
+  background-color: #e6f7ec;
+  border: 1px solid #52c41a;
+  color: #08a100;
+}
+
+.result-box.fraud {
+  background-color: #fff1f0;
+  border: 1px solid #ff4d4f;
+  color: #d90000;
+}
+
+.result-box.error {
+  background-color: #fffbe6;
+  border: 1px solid #ffa940;
+  color: #d46b08;
+}
+
+.result-box p {
+  margin: 5px 0 0;
+}
+
+/* --- Dashboard Grid Styling --- */
+.kpi-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  flex-basis: 30%; /* Each card takes ~30% of the width */
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+
+.kpi-card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.kpi-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 0;
+}
+
+.kpi-card:nth-child(2) p {
+  color: #FF8042; /* Make fraud count orange */
+}
+.kpi-card:nth-child(3) p {
+  color: #d90000; /* Make fraud rate red */
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px; /* Give the chart a fixed height */
+  margin-bottom: 20px;
+}
+
+/* --- Recent Logs Table Styling --- */
+.table-container {
+  width: 100%;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.logs-table th,
+.logs-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.logs-table th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+}
+
+/* Highlight fraud rows in the table */
+.logs-table .fraud-row {
+  background-color: #fff1f0;
+  color: #d90000;
+  font-weight: bold;
+}
