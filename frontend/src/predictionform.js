@@ -52,7 +52,7 @@ function PredictionForm({ onPredictionSuccess }) {
 
     try {
       // Talk to our FastAPI backend!
-      const response = await fetch('https://fraud-api-h8ty.onrender.com/', {
+      const response = await fetch('https://fraud-api-h8ty.onrender.com/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
